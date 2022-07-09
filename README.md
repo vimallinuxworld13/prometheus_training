@@ -43,3 +43,29 @@ node_cpu_seconds_total{mode="idle"} > 4800
 node_cpu_seconds_total{mode="idle"} or  node_cpu_seconds_total{mode="iowait"} 
 
 
+sum (prometheus_http_requests_total ) by (code)
+
+sum (node_cpu_seconds_total)  by (env, mode)
+
+max ( sum (node_cpu_seconds_total)  by (env, mode) )
+
+rate ( prometheus_http_requests_total[1m] )
+
+rate ( prometheus_http_requests_total{handler=~"/api.*"}[10m] )
+
+rate ( engine_daemon_container_states_containers{state="running"}[2h] )
+
+irate ( prometheus_http_requests_total[1m] )
+
+changes ( process_start_time_seconds{job="dockerplatform1"}[1h] )
+
+changes ( process_start_time_seconds{job="dockerplatform1"}[1h] )
+
+deriv ( process_resident_memory_bytes{job="linuxnode2"}[1h] )
+
+predict_linear ( node_memory_MemFree_bytes{job="linuxnode1"}[1h]  ,   1 * 60 * 60  * 24)  / 1024 / 1024
+
+( time()  - process_start_time_seconds{job="linuxnode1"}  ) / 60 / 60
+
+
+
